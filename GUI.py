@@ -68,12 +68,12 @@ buttonAddEntry = Button(window, text="Add", width=20, height=2, font=myFont, bg=
                         relief="ridge")
 buttonAddEntry.grid(column=5, row=2, padx=10, pady=10)
 
-buttonUpdate = Button(window, text="Update", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
+buttonUpdate = Button(window, text="Update Selected", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
                       fg=rgb_hack((217, 217, 217)), activebackground=rgb_hack((49, 131, 212)), borderwidth=2,
                       relief="ridge")
 buttonUpdate.grid(column=5, row=3, padx=10, pady=10)
 
-buttonDelete = Button(window, text="Delete", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
+buttonDelete = Button(window, text="Delete Selected", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
                       fg=rgb_hack((217, 217, 217)), activebackground=rgb_hack((49, 131, 212)), borderwidth=2,
                       relief="ridge")
 buttonDelete.grid(column=5, row=4, padx=10, pady=10)
