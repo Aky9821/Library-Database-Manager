@@ -82,10 +82,10 @@ def update(SNo, title, author, year, UID):
 
 
 connectToDatabase()
-
-'''print(search(year=2000, author='Dan Brown', UID=5678, title='Da Vinci Code'))
+delete(6)
+'''print(search(year=2000, UID=5678, title='Six of crows'))
 print(viewAll())
 delete(4)
-update(1, 'DAVINCICODE', 'Dan Brown', 1995, 4567)
+
 print(viewAll())
 '''

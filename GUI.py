@@ -1,8 +1,46 @@
 from tkinter import *
 
+import Database
+
 
 def rgb_hack(rgb):
     return "#%02x%02x%02x" % rgb
+
+
+def viewFunction():
+    booklist.delete(0, END)
+    # booklist.insert(END, "SNo   Title      Author   Year UID")
+    for x in Database.viewAll():
+        booklist.insert(END, x)
+
+
+def searchFunction():
+    booklist.delete(0, END)
+    flag = 0
+    for x in Database.search(title.get(), author.get(), year.get(), UID.get()):
+        flag = 1
+        booklist.insert(END, x)
+    if flag == 0:
+        booklist.insert(END, 'Entered Search Not Found!')
+
+
+def addFunction():
+    booklist.delete(0, END)
+    flag = 0
+    for x in Database.search(UID=UID.get()):
+        booklist.insert(END, x)
+        flag = 1
+    if (title.get() == '' or author.get() == '' or year.get() == '' or UID.get() == ''):
+        booklist.insert(END, 'All entries are mandatory and can\'t be left blank!')
+    elif flag == 1:
+        booklist.insert(END, 'UID already present in database!')
+        booklist.insert(END, 'All UID should be unique.')
+    else:
+        Database.insert(title.get(), author.get(), year.get(), UID.get())
+        booklist.delete(0, END)
+
+        searchFunction()
+        booklist.insert(END, 'Entry Added!')
 
 
 window = Tk()
@@ -43,7 +81,7 @@ entryUID = Entry(window, textvariable=UID, width=20, borderwidth=2, font=myFont,
                  fg=rgb_hack((222, 222, 222)), relief="ridge")
 entryUID.grid(column=1, row=3, padx=10, pady=10, ipady=11)
 
-booklist = Listbox(window, height=20, width=40, font=myFont, bg=rgb_hack((50, 50, 50)),
+booklist = Listbox(window, height=20, width=50, font=myFont, bg=rgb_hack((50, 50, 50)),
                    fg=rgb_hack((217, 217, 217)), borderwidth=2,
                    relief="ridge")
 booklist.grid(column=3, row=0, rowspan=6, padx=10, pady=10)
@@ -55,17 +93,18 @@ scrollbar.configure(command=booklist.yview)
 
 buttonViewAll = Button(window, text="View All", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
                        fg=rgb_hack((217, 217, 217)), activebackground=rgb_hack((49, 131, 212)), borderwidth=2,
-                       relief="ridge")
+                       relief="ridge", command=viewFunction)
 buttonViewAll.grid(column=5, row=0, padx=10, pady=10)
 
 buttonSearchEntry = Button(window, text="Search", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
                            fg=rgb_hack((217, 217, 217)), activebackground=rgb_hack((49, 131, 212)), borderwidth=2,
-                           relief="ridge")
+                           relief="ridge", command=searchFunction)
 buttonSearchEntry.grid(column=5, row=1, padx=10, pady=10)
 
 buttonAddEntry = Button(window, text="Add", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
                         fg=rgb_hack((217, 217, 217)), activebackground=rgb_hack((49, 131, 212)), borderwidth=2,
-                        relief="ridge")
+                        relief="ridge",
+                        command=addFunction)
 buttonAddEntry.grid(column=5, row=2, padx=10, pady=10)
 
 buttonUpdate = Button(window, text="Update Selected", width=20, height=2, font=myFont, bg=rgb_hack((50, 50, 50)),
