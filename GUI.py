@@ -107,7 +107,7 @@ def scrollFunction():
 
 
 window = Tk()
-window.title("Book Store")
+window.title("Library Database")
 window.state('zoomed')
 window.config(bg=rgb_hack((50, 50, 50)))
 myFont = ("Consolas", "16", "bold")
