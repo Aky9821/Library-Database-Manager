@@ -1,4 +1,4 @@
-# Library
+# Library Database Manager
 Python Project
 
 A library database management GUI program made using tkinter and sqlite3 of python 
