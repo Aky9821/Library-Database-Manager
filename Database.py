@@ -44,7 +44,7 @@ def search(title="", author="", year="", ISBN=""):
             title == "" and author == "" and year == "" and ISBN != ""):
         cur.execute(
             "SELECT * FROM Book WHERE UPPER(title) LIKE ? OR UPPER(author) LIKE ? OR year LIKE ? OR ISBN LIKE ?",
-            (title, author, year, ISBN) + '%')
+            (title, author, year, ISBN) )
     elif title != "" and author != "" and year == "" and ISBN == "":
         cur.execute("SELECT * FROM Book WHERE UPPER(title) LIKE ? AND UPPER(author) LIKE ? ", (title, author))
     elif title != "" and author == "" and year != "" and ISBN == "":
