@@ -4,16 +4,13 @@ import sqlite3
 def connectToDatabase():
     connection = sqlite3.connect("Books.db")
     cur = connection.cursor()
-  
-    # cur.execute(
-    #    "CREATE TABLE IF NOT EXISTS 'Bx-Books' (ISBN VARCHAR(13) PRIMARY KEY, Title varchar(255),Author varchar(255), "
-    #    "Year INT(10), Publisher varchar(255), ImageURLS varchar(255),ImageURLM varchar(255),"
-    #    "ImageURLL varchar(255)) "
-    # )
+    cur.execute(
+        "CREATE TABLE IF NOT EXISTS 'Book' (ISBN VARCHAR(13) PRIMARY KEY, Title varchar(255),Author varchar(255), "
+        "Year INTEGER(10), Publisher varchar(255)) ")
+
     # sqlFile = open("BX-Books.sql")
     # sqlAsString = sqlFile.read()
     # cur.executescript(sqlAsString)
-
     # cur.execute("ALTER TABLE 'Bx-Books' RENAME TO Book")
 
     connection.commit()
